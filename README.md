@@ -1,6 +1,12 @@
 # SMock
-Simple Mock for javascript
+Simple Mock for javascript.
 Straight forward and no hussle object mocking.
+
+![Smock](http://www.omerique.net/polavide/rec_polavide0708/edilim/hie_hue_hui_hum/misrecursos/humo.gif)
+
+```bash
+$ npm install smock
+```
 
 ## Example
 
@@ -26,6 +32,7 @@ redFruit.cutInPieces();
 // 5
 
 var mockedRedFruit = smock(redFruit).with('healthy', 'a bit');
+
 mockedRedFruit.healthy();
 // 'a bit'
 mockedRedFruit.color;
