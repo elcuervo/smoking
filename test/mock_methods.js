@@ -31,7 +31,8 @@ scenario("Smock - mocking methods and attributes", {
   'mock a set of methods at once': function(g) {
     var mock = smock(this.object).with({
       whichDay: 'someday',
-      someThing: 'tomato'
+      someThing: 'tomato',
+      answer: function() { return 41; }
     });
 
     g.assertEqual(mock.whichDay(), 'someday');
