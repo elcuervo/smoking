@@ -30,7 +30,7 @@ mockedRedFruit.healthy();
 // 'a bit'
 mockedRedFruit.color;
 // 'red'
-mockedRedFruit.cutInPieces;
+mockedRedFruit.cutInPieces();
 // 2
 redFruit.healthy();
 // 'yes'
@@ -48,6 +48,8 @@ var uberChangedFruit = smock(redFruit).with({
 uberChangedFruit.color;
 // 'blue'
 uberChangedFruit.cutInPieces();
+// function(){}
+uberChangedFruit.cutInPieces()();
 // 7
 uberChangedFruit.healthy();
 // 'yes'
