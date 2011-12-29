@@ -1,0 +1,15 @@
+{
+  "name": "smock",
+  "description": "SMock: Simple Mock for javascript",
+  "version": "0.0.1",
+  "author": "elCuervo <elcuervo@elcuervo.co>",
+  "keywords": ["tdd", "testing", "smock", "mock", "simple"],
+  "directories": {"lib": "./lib", "test": "./test"},
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git://github.com/elcuervo/smock.git"
+    }
+  ],
+  "main": "./lib/smock.js"
+}
