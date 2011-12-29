@@ -1,5 +1,7 @@
-var scenario = require('gerbil').scenario;
-var Smock = require('../lib/smock');
+if(typeof module != 'undefined') {
+  var scenario = require('gerbil').scenario;
+  var smock = require('../lib/smock');
+}
 
 scenario("Smock - mocking methods and attributes", {
   'before': function() {
@@ -17,7 +19,7 @@ scenario("Smock - mocking methods and attributes", {
   },
 
   'mock a given methods': function(g) {
-    var mock = new Smock(this.object).mock('whichDay', 'tomorrow');
+    var mock = smock(this.object).with('whichDay', 'tomorrow');
 
     g.assertEqual(mock.whichDay(), 'tomorrow');
     g.assertEqual(mock.someThing(), 'potato');
@@ -27,7 +29,7 @@ scenario("Smock - mocking methods and attributes", {
   },
 
   'mock a set of methods at once': function(g) {
-    var mock = new Smock(this.object).mock({
+    var mock = smock(this.object).with({
       whichDay: 'someday',
       someThing: 'tomato'
     });
@@ -40,7 +42,7 @@ scenario("Smock - mocking methods and attributes", {
   },
 
   'mock attributes as well': function(g) {
-    var mock = new Smock(this.object).mock('answer', 42);
+    var mock = smock(this.object).with('answer', 42);
 
     g.assertEqual(mock.answer, 42);
     g.assertEqual(this.object.answer, 21);
