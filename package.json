@@ -1,7 +1,7 @@
 {
   "name": "smock",
   "description": "SMock: Simple Mock for javascript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "elCuervo <elcuervo@elcuervo.co>",
   "keywords": ["tdd", "testing", "smock", "mock", "simple"],
   "directories": {"lib": "./lib", "test": "./test"},
