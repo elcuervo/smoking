@@ -19,7 +19,7 @@ scenario("Smock - mocking methods and attributes", {
   },
 
   'mock a given methods': function(g) {
-    var mock = smock(this.object).with('whichDay', 'tomorrow');
+    var mock = smock(this.object, { whichDay: function() { return 'tomorrow' } });
 
     g.assertEqual(mock.whichDay(), 'tomorrow');
     g.assertEqual(mock.someThing(), 'potato');
@@ -29,9 +29,9 @@ scenario("Smock - mocking methods and attributes", {
   },
 
   'mock a set of methods at once': function(g) {
-    var mock = smock(this.object).with({
-      whichDay: 'someday',
-      someThing: 'tomato',
+    var mock = smock(this.object, {
+      whichDay: function() { return 'someday'; },
+      someThing: function() { return 'tomato'; },
       answer: function() { return 41; }
     });
 
@@ -43,7 +43,7 @@ scenario("Smock - mocking methods and attributes", {
   },
 
   'mock attributes as well': function(g) {
-    var mock = smock(this.object).with('answer', 42);
+    var mock = smock(this.object, { answer: 42 });
 
     g.assertEqual(mock.answer, 42);
     g.assertEqual(this.object.answer, 21);
