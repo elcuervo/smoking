@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/elcuervo/smock/master/lib/smock.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/elcuervo/gerbil/master/lib/gerbil.js"></script>
+  </head>
+  <script type="text/javascript">
+    var mockJQuery = function() {
+      scenario('Hijack jquery ajax requests', {
+        'before': function() {
+          this.success = false;
+          this.failure = false;
+          this.response = null;
+        },
+
+        'after': function() {
+          // Cleans the jQuery ajax object cache
+          delete jQuery.ajaxSettings.xhr;
+        },
+
+        'test when request succeeds': function(g) {
+          var self = this;
+          var mockedXMLHttpRequest = smock(new XMLHttpRequest, {
+            responseText: "Hello",
+            status: this.DONE,
+            statusCode: 200,
+            readyState: 4,
+            open: function(type, url) { },
+            getAllResponseHeaders: function() { return },
+            send: function(data) { typeof this.onreadystatechange == 'function' && this.onreadystatechange(); }
+          });
+
+          window.XMLHttpRequest = function() { return mockedXMLHttpRequest; };
+
+          $.ajax({
+            url: "test.html",
+            success: function(data) {
+              self.success = true;
+              self.response = data;
+            },
+            error: function() { self.failure = true; }
+          });
+
+          g.assert(this.success);
+          g.assert(!this.failure);
+          g.assertEqual(this.response, "Hello");
+        },
+
+        'test when a request fails': function(g) {
+          var self = this;
+          var mockedXMLHttpRequest = smock(new XMLHttpRequest, {
+            statusCode: 404,
+            status: this.DONE,
+            open: function(type, url) { },
+            getAllResponseHeaders: function() { return },
+            send: function(data) { typeof this.onreadystatechange == 'function' && this.onreadystatechange(); }
+          });
+
+          window.XMLHttpRequest = function() { return mockedXMLHttpRequest; };
+
+          $.ajax({
+            url: "you_will_fail_anyway.html",
+            success: function(data) {
+              self.success = true;
+              self.response = data;
+            },
+            error: function() { self.failure = true; }
+          });
+
+          g.assert(!this.success);
+          g.assert(this.failure);
+        }
+      });
+    };
+  </script>
+  <body onload='mockJQuery()'></body>
+</html>
