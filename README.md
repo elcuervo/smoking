@@ -41,7 +41,7 @@ redFruit.healthy;
 redFruit.cutInPieces();
 // 5
 
-var stubedRedFruit = smoking(redFruit, { healthy: 'a bit' });
+var stubbedRedFruit = smoking(redFruit, { healthy: 'a bit' });
 
 stubbedRedFruit.healthy;
 // 'a bit'
@@ -71,6 +71,26 @@ uberChangedFruit.cutInPieces();
 uberChangedFruit.healthy;
 // 'yes'
 ```
+
+## Mocking
+
+You can easily verify the call of methods.
+
+```javascript
+var mockFruit = smoking(redFruit).expects({ cutInPieces: 1 });
+mockFruit.cutInPieces();
+smoking(mockFruit).verify();
+```
+
+Or with a shorthand if it's just one method and needs to be called once
+
+```javascript
+var mockFruit = smoking(redFruit).expects('cutInPieces');
+smoking(mockFruit).verify();
+```
+
+The prior example will fail with a RangeError because the 'cutInPieces' methods
+does not get called.
 
 ## Name
 It's a [foca](http://github.com/foca)'s idea :D.
