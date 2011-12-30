@@ -13,7 +13,7 @@ $ npm install smock
 ```javascript
 var Fruit = function(color) {
   this.color = color;
-  this.healthy = function(){ return 'yes'; };
+  this.healthy = 'yes';
 };
 
 Fruit.prototype = {
@@ -26,26 +26,26 @@ var redFruit = new Fruit('red');
 
 redFruit.color;
 // 'red'
-redFruit.healthy();
+redFruit.healthy;
 // 'yes'
 redFruit.cutInPieces();
 // 5
 
-var mockedRedFruit = smock(redFruit).with('healthy', 'a bit');
+var mockedRedFruit = smock(redFruit, { healthy: 'a bit' });
 
-mockedRedFruit.healthy();
+mockedRedFruit.healthy;
 // 'a bit'
 mockedRedFruit.color;
 // 'red'
 mockedRedFruit.cutInPieces();
 // 2
-redFruit.healthy();
+redFruit.healthy;
 // 'yes'
 // You get the point
 ```
 
 ```javascript
-var uberChangedFruit = smock(redFruit).with({
+var uberChangedFruit = smock(redFruit, {
   color: 'blue',
   cutInPieces: function() {
     return 7;
@@ -55,9 +55,7 @@ var uberChangedFruit = smock(redFruit).with({
 uberChangedFruit.color;
 // 'blue'
 uberChangedFruit.cutInPieces();
-// function(){}
-uberChangedFruit.cutInPieces()();
 // 7
-uberChangedFruit.healthy();
+uberChangedFruit.healthy;
 // 'yes'
 ```
