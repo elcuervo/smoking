@@ -13,9 +13,9 @@ Or add it to your script tag
 https://raw.github.com/elcuervo/smoking/master/lib/smoking.js
 ```
 
-## Mocking
+## Stubbing
 
-The idea is to provide simple mocking to normal objects, no API, no
+The idea is to provide simple mocking and stubbing to normal objects, no API, no
 dependencies.
 
 ### Example
@@ -41,13 +41,13 @@ redFruit.healthy;
 redFruit.cutInPieces();
 // 5
 
-var mockedRedFruit = smoking(redFruit, { healthy: 'a bit' });
+var stubedRedFruit = smoking(redFruit, { healthy: 'a bit' });
 
-mockedRedFruit.healthy;
+stubbedRedFruit.healthy;
 // 'a bit'
-mockedRedFruit.color;
+stubbedRedFruit.color;
 // 'red'
-mockedRedFruit.cutInPieces();
+stubbedRedFruit.cutInPieces();
 // 2
 redFruit.healthy;
 // 'yes'
@@ -71,3 +71,6 @@ uberChangedFruit.cutInPieces();
 uberChangedFruit.healthy;
 // 'yes'
 ```
+
+## Name
+It's a [foca](http://github.com/foca)'s idea :D.
