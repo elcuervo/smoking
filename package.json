@@ -1,15 +1,15 @@
 {
-  "name": "smock",
-  "description": "SMock: Simple Mock for javascript",
+  "name": "smoking",
+  "description": "Smoking: Simple Mocking and Stubbing for javascript",
   "version": "0.0.2",
   "author": "elCuervo <elcuervo@elcuervo.co>",
-  "keywords": ["tdd", "testing", "smock", "mock", "simple"],
+  "keywords": ["tdd", "testing", "smoking", "mock", "stub", "simple"],
   "directories": {"lib": "./lib", "test": "./test"},
   "repositories": [
     {
       "type": "git",
-      "url": "git://github.com/elcuervo/smock.git"
+      "url": "git://github.com/elcuervo/smoking.git"
     }
   ],
-  "main": "./lib/smock.js"
+  "main": "./lib/smoking.js"
 }

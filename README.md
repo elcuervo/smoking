@@ -1,17 +1,16 @@
-# SMock
-Simple Mock for javascript.
-Straight forward and no hussle object mocking.
+# Smoking
+Simple Mocks and Stubs for javascript.
 
 ![Smock](http://www.omerique.net/polavide/rec_polavide0708/edilim/hie_hue_hui_hum/misrecursos/humo.gif)
 
 ```bash
-$ npm install smock
+$ npm install smoking
 ```
 
 Or add it to your script tag
 
 ```html
-https://raw.github.com/elcuervo/smock/master/lib/smock.js
+https://raw.github.com/elcuervo/smoking/master/lib/smoking.js
 ```
 
 ## Mocking
@@ -42,7 +41,7 @@ redFruit.healthy;
 redFruit.cutInPieces();
 // 5
 
-var mockedRedFruit = smock(redFruit, { healthy: 'a bit' });
+var mockedRedFruit = smoking(redFruit, { healthy: 'a bit' });
 
 mockedRedFruit.healthy;
 // 'a bit'
@@ -58,7 +57,7 @@ redFruit.healthy;
 ### Another
 
 ```javascript
-var uberChangedFruit = smock(redFruit, {
+var uberChangedFruit = smoking(redFruit, {
   color: 'blue',
   cutInPieces: function() {
     return 7;

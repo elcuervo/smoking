@@ -1,7 +1,7 @@
 <html>
   <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/elcuervo/smock/master/lib/smock.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/elcuervo/smoking/master/lib/smoking.js"></script>
     <script type="text/javascript" src="https://raw.github.com/elcuervo/gerbil/master/lib/gerbil.js"></script>
   </head>
   <script type="text/javascript">
@@ -20,7 +20,7 @@
 
         'test when request succeeds': function(g) {
           var self = this;
-          var mockedXMLHttpRequest = smock(new XMLHttpRequest, {
+          var mockedXMLHttpRequest = smoking(new XMLHttpRequest, {
             responseText: "Hello",
             status: this.DONE,
             statusCode: 200,
@@ -48,7 +48,7 @@
 
         'test when a request fails': function(g) {
           var self = this;
-          var mockedXMLHttpRequest = smock(new XMLHttpRequest, {
+          var mockedXMLHttpRequest = smoking(new XMLHttpRequest, {
             statusCode: 404,
             status: this.DONE,
             open: function(type, url) { },
