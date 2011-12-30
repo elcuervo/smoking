@@ -89,5 +89,11 @@ scenario("Smoking - mock methods calls", {
     g.assertThrow(RangeError, function() {
       smoking(mockedObject).verify();
     });
+  },
+
+  'should raise an error if trying to verify an object without mocks': function(g) {
+    g.assertThrow(Error, function() {
+      smoking(this.object).verify();
+    });
   }
 });
