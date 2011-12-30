@@ -8,7 +8,18 @@ Straight forward and no hussle object mocking.
 $ npm install smock
 ```
 
-## Example
+Or add it to your script tag
+
+```html
+https://raw.github.com/elcuervo/smock/master/lib/smock.js
+```
+
+## Mocking
+
+The idea is to provide simple mocking to normal objects, no API, no
+dependencies.
+
+### Example
 
 ```javascript
 var Fruit = function(color) {
@@ -43,6 +54,8 @@ redFruit.healthy;
 // 'yes'
 // You get the point
 ```
+
+### Another
 
 ```javascript
 var uberChangedFruit = smock(redFruit, {
