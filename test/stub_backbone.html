@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/elcuervo/smoking/master/lib/smoking.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/elcuervo/gerbil/master/lib/gerbil.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/documentcloud/underscore/master/underscore.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/documentcloud/backbone/master/backbone.js"></script>
+  </head>
+  <script type="text/javascript">
+    var mockJQuery = function() {
+      scenario('Hijack jquery ajax requests for backbone model', {
+        'before': function() {
+          this.success = false;
+          this.failure = false;
+          this.response = null;
+        },
+
+        'after': function() {
+          // Cleans the jQuery ajax object cache
+          delete jQuery.ajaxSettings.xhr;
+        },
+
+        'test when request succeeds': function(g) {
+          var that = this;
+          var mockedXMLHttpRequest = smoking(new XMLHttpRequest, {
+            responseText: '{"id":1,"name":"Jose"}',
+            status: this.DONE,
+            statusCode: 200,
+            statusText : "success", //The status text is parsed to deal with the outcome of the fetch
+            readyState: 4,
+            open: function(type, url) { },
+            getAllResponseHeaders: function() { return },
+            send: function(data) { typeof this.onreadystatechange == 'function' && this.onreadystatechange(); }
+          });
+
+          window.XMLHttpRequest = function() { return mockedXMLHttpRequest; };
+
+          userModel = Backbone.Model.extend({ url: '/users' });
+          var user = new userModel({ id:5, name: 'Romi'});
+
+          user.fetch();
+
+          g.assertEqual(user.get('name'), 'Jose');
+          g.assertEqual(user.get('id'), 1);
+        },
+
+      });
+    };
+  </script>
+  <body onload='mockJQuery()'></body>
+</html>
