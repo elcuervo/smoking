@@ -1,6 +1,8 @@
 # Smoking
 Simple Mocks and Stubs for javascript.
 
+[![Build Status](https://secure.travis-ci.org/elcuervo/smoking.png?branch=master)](http://travis-ci.org/elcuervo/smoking)
+
 ![Smock](http://www.omerique.net/polavide/rec_polavide0708/edilim/hie_hue_hui_hum/misrecursos/humo.gif)
 
 ```bash
