@@ -5,11 +5,15 @@
   "author": "elCuervo <elcuervo@elcuervo.co>",
   "keywords": ["tdd", "testing", "smoking", "mock", "stub", "simple"],
   "directories": {"lib": "./lib", "test": "./test"},
+  "devDependencies": { "gerbil": "*" },
   "repositories": [
     {
       "type": "git",
       "url": "git://github.com/elcuervo/smoking.git"
     }
   ],
-  "main": "./lib/smoking.js"
+  "main": "./lib/smoking.js",
+  "scripts": {
+    "test": "node test/stub_and_mock.js"
+  }
 }
